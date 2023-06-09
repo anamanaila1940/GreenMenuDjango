@@ -1,0 +1,97 @@
+
+{% extends 'navbar.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+<div class="container px-10">
+<div class="row justify-content-center">
+{% for i in products %}
+{% if i.type == 'Starters' and i.status == 'In date' %}
+<div class="col nlc" style="padding-right: 100px; margin-top: 100px; margin-bottom: 20px;">
+
+    <div class="modal fade" id="exampleModalCenter{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"  id="{{i.id}}" role="document">
+          <div class="modal-content" style="background-color: black;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">{{i.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col">
+                  <img style="width: 100px; height: 100px; justify-content: center; position: relative;" src="{{i.image.url}}" alt="">
+                  <div class="row">
+                    <div class="col">
+                        <p>Allergens: <br>{{i.allergens}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <p >{{i.description}}</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    
+    <div class="justify-content-center">
+        <h4>{{i.name}}</h4>
+    </div>
+    <a href="#" data-toggle="modal" data-target="#exampleModalCenter{{i.id}}">
+        <img style="width: 200px; height: 200px; justify-content: center; position: absolute;" src="{{i.image.url}}" alt="">
+    </a>
+    
+   
+
+    <div class="price">
+    <div class="circle">
+        <div class="content">
+            <p>£{{i.price}}</p>
+        </div>
+    </div>
+    </div>
+</div>
+{% elif i.type == 'Starters' and i.status == 'Unavailable' %}
+<div class="col nlc" style="padding-right: 100px; margin-top: 100px; margin-bottom: 20px;">
+<div class="justify-content-center">
+  <h4>{{i.name}}</h4>
+</div>
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter{{i.id}}">
+  <img style="width: 200px; height: 200px; justify-content: center; position: absolute;" src="{{i.image.url}}" alt="">
+  
+</a>
+
+
+
+<div class="price">
+<div class="circle">
+  <div class="content">
+      <p>£{{i.price}}</p>
+  </div>
+</div>
+</div>
+<div class="col" style=" width: 2px; height: 2px;">
+  <img style="left:-20px; width: 250px; height: 150px; position: relative;" src="{% static 'images/unavailable.png' %}" alt="">
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+</div>
+</div>
+{% block scripts %}
+    <script src="{% static '/javascript/code.js' %}" defer>
+
+    </script>
+{% endblock scripts %}
+{% endblock %}
+
+

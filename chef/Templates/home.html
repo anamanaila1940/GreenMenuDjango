@@ -1,0 +1,39 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Type</th>
+        <th scope="col">Status</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in products %} 
+      <tr>  
+         
+        <td>{{i.name}}</td>
+        <td>{{i.type}}</td>
+        <td>{{ i.status }}</td>
+        <td><a href="{% url 'update' i.id %}">Update</a></td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% block scripts %}
+    <script src="{% static '/javascript/code.js' %}" defer>
+
+    </script>
+{% endblock scripts %}
+
+{% endblock %}

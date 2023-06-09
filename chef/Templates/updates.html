@@ -1,0 +1,21 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+<h1>Update Status</h1>
+<form action="" method="POST"> 
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="Submit">
+</form>
+
+{% block scripts %}
+    <script src="{% static '/javascript/code.js' %}" defer>
+
+    </script>
+{% endblock scripts %}
+
+{% endblock %}
